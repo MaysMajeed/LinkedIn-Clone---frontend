@@ -34,9 +34,9 @@ function Step5SignUp({ step, setStep, formData, setFormData }) {
             sx={{
               pb: { xs: "7vw", lg: "3vw" },
               pt: { xs: "7vw", lg: "3vw" },
-              fontSize: { xs: "5px", lg: "10px", xl: "20px" },
+              fontSize: { xs: "20px", lg: "25px", xl: "30px" },
             }}
-            variant="p"
+            variant="h4"
           >
             Confirm your email
           </Typography>
@@ -45,9 +45,9 @@ function Step5SignUp({ step, setStep, formData, setFormData }) {
           </Typography>
           <TextField
             id="verificationCodeInput"
-            placeholder="- - - - -"
             variant="outlined"
             size="small"
+            type="number"
           ></TextField>
           <Stack
             sx={{

@@ -1,11 +1,36 @@
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import React from "react";
 
 function Step4SignUp({ setStep, formData, setFormData }) {
   const handleSubmitStep4 = (e) => {
     e.preventDefault();
-    console.log(formData);
     setStep((currentStep) => currentStep + 1);
+    const signUpUpdate = {
+      country: formData.countryRegion,
+      city: formData.cityDistrict,
+      job_title: formData.JT,
+    };
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      try {
+        fetch("http://172.18.223.248:8070/api/auth/users/me/", {
+          method: "PUT",
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+          body: JSON.stringify(signUpUpdate),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("there is no valid token!");
+    }
   };
   return (
     <form onSubmit={handleSubmitStep4}>
@@ -22,9 +47,9 @@ function Step4SignUp({ setStep, formData, setFormData }) {
           sx={{
             pb: { xs: "7vw", lg: "3vw" },
             pt: { xs: "7vw", lg: "3vw" },
-            fontSize: { xs: "5px", lg: "10px", xl: "20px" },
+            fontSize: { xs: "20px", lg: "25px", xl: "30px" },
           }}
-          variant="p"
+          variant="h4"
         >
           Your profile helps you dicover new people and opertunities
         </Typography>
@@ -53,6 +78,7 @@ function Step4SignUp({ setStep, formData, setFormData }) {
               label="Most recent job title"
               variant="outlined"
               size="small"
+              required
               sx={{
                 width: { xs: "87vw", sm: "57vw", md: "47vw", lg: "27vw" },
                 mt: "2vw",
@@ -65,12 +91,17 @@ function Step4SignUp({ setStep, formData, setFormData }) {
                 })
               }
             ></TextField>
+            <FormControlLabel
+              sx={{ mt: 4 }}
+              control={<Checkbox />}
+              label="Iam a student"
+            />
           </Box>
           <Button
             variant="contained"
             sx={{
               borderRadius: "30px",
-              m: 2,
+              mt: 7,
               size: "small",
               width: { xs: "85vw", sm: "55vw", md: "45vw", lg: "25vw" },
             }}

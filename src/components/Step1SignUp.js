@@ -60,6 +60,7 @@ function Step1SignUp({ setStep, formData, setFormData }) {
               label="Email"
               variant="outlined"
               size="small"
+              type="email"
               required
               sx={{
                 width: { xs: "87vw", sm: "57vw", md: "47vw", lg: "27vw" },
@@ -75,6 +76,7 @@ function Step1SignUp({ setStep, formData, setFormData }) {
               label="Password"
               variant="outlined"
               size="small"
+              type="password"
               required
               sx={{
                 width: { xs: "87vw", sm: "57vw", md: "47vw", lg: "27vw" },

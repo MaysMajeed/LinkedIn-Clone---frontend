@@ -10,7 +10,11 @@ import {
 import React from "react";
 function SideBar() {
   return (
-    <Box sx={{ display: { xs: "none", md: "block" } }}>
+    <Box
+      sx={{
+        display: { xs: "none", md: "block" },
+      }}
+    >
       {/* Paper One */}
       <Paper
         elevation={3}
@@ -21,7 +25,9 @@ function SideBar() {
             xs: "none",
             sm: "flex",
             flexDirection: "column",
+            position: "relative",
           },
+
           mr: "2vw",
           ml: "2vw",
           bgcolor: "#fff",
@@ -39,6 +45,10 @@ function SideBar() {
           sx={{
             width: 56,
             height: 56,
+            position: "absolute",
+            top: 50,
+            left: "8vw",
+            transform: "translate(-50%, -50%)",
           }}
         ></Avatar>
 
@@ -52,7 +62,7 @@ function SideBar() {
             justifyContent: "center",
           }}
         >
-          <Link mt={2}>Mays Mahdi PMP®</Link>
+          <Link mt={4}>Mays Mahdi PMP®</Link>
           <Typography variant="p" mt={2} fontSize={13} color="gray">
             ERP Technical Specialist at QiCard
           </Typography>

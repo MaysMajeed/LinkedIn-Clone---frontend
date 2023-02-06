@@ -2,9 +2,39 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
 
 function Step2SignUp({ setStep, formData, setFormData }) {
-  const handleSubmitStep2 = (e) => {
+  const handleSubmitStep2 = async (e) => {
     e.preventDefault();
     setStep((currentStep) => currentStep + 1);
+    const signUpPost = {
+      email: formData.email,
+      password: formData.password,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+    };
+    const loginData = {
+      email: formData.email,
+      password: formData.password,
+    };
+    try {
+      await fetch("http://172.18.223.248:8070/api/auth/users/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json;charset=UTF-8" },
+        body: JSON.stringify(signUpPost),
+      })
+        .then((response) => response.json())
+        .then((data) =>
+          fetch("http://172.18.223.248:8070/api/auth/jwt/create/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json;charset=UTF-8" },
+            body: JSON.stringify(loginData),
+          })
+            .then((response) => response.json())
+            .then((data) => localStorage.setItem("accessToken", data.access))
+        );
+      //setFormData({ ...formData, id: data.id })
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <form onSubmit={handleSubmitStep2}>

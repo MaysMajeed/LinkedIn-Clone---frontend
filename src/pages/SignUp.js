@@ -9,6 +9,7 @@ function SignUp() {
   document.title = "Sign Up | LinkedIn";
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
+    id: "",
     email: "",
     password: "",
     firstName: "",

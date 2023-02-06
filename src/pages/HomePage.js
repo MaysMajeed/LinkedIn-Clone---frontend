@@ -5,11 +5,11 @@ import SideBar from "../components/SideBar";
 import Feed from "../components/Feed";
 import { Box, Stack } from "@mui/material";
 
-function HomePage() {
+function HomePage({ user }) {
   document.title = "Feed | LinkedIn";
   return (
     <Box bgcolor="rgba(0,0,0,0.07)">
-      <NavBar />
+      <NavBar user={user} />
       <Stack
         sx={{
           mt: 3,
